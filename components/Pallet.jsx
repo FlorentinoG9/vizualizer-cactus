@@ -7,7 +7,6 @@ export default function Pallet() {
   return (
     <div>
       
-      
     </div>
   )
 }

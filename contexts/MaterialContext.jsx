@@ -7,14 +7,14 @@ export const MaterialContext = createContext();
 export default function MaterialProvider({ children }) {
 	const [points, setPoints] = useState([]);
 	const [materials, setMaterials] = useState([]);
-  const [pallet, setPallet] = useState([])
+	const [pallet, setPallet] = useState([]);
+	const [layers, setLayers] = useState([]);
 
-  const selectPallet = (id) =>{
-    const mats = materials.filter( mat => mat.id == id)
-    setPallet(mats)
-
-    console.log(pallet);
-  }
+	const selectPallet = (id) => {
+		const mats = materials.filter((mat) => mat.id == id);
+		console.log(mats);
+		setPallet(mats);
+	};
 
 	useEffect(() => {
 		const ptsRef = collection(db, 'points');
@@ -27,11 +27,12 @@ export default function MaterialProvider({ children }) {
 		onSnapshot(matsRef, (snap) => {
 			setMaterials(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 		});
-
 	}, []);
 
 	return (
-		<MaterialContext.Provider value={{ points, materials, pallet, selectPallet }}>
+		<MaterialContext.Provider
+			value={{ points, materials, pallet, selectPallet }}
+		>
 			{children}
 		</MaterialContext.Provider>
 	);
