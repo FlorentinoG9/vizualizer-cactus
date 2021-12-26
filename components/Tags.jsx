@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { MaterialContext } from '../contexts/MaterialContext';
+import Pallet from './Pallet';
 
 export default function Tags() {
 	const { points, selectPallet } = useContext(MaterialContext);
@@ -17,7 +18,8 @@ export default function Tags() {
 					></button>
 				);
 			})}
-			
+
+			<Pallet />
 		</>
 	);
 }

@@ -16,6 +16,10 @@ export default function MaterialProvider({ children }) {
 		setPallet(mats);
 	};
 
+	const addLayer = () => {
+		
+	}
+
 	useEffect(() => {
 		const ptsRef = collection(db, 'points');
 		const matsRef = collection(db, 'materials');
