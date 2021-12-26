@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Tags from '../components/Tags';
+import MaterialProvider from '../contexts/MaterialContext';
 export default function Home() {
 	return (
 		<div className='relative flex flex-col items-center justify-center min-h-screen py-2 backdrop-blur-sm'>
@@ -8,6 +10,9 @@ export default function Home() {
 					width={1250}
 					height={885}
 				/>
+				<MaterialProvider>
+					<Tags />
+				</MaterialProvider>
 			</div>
 		</div>
 	);
