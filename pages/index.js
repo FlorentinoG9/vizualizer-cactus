@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Layer from '../components/Layer';
 import Tags from '../components/Tags';
 import MaterialProvider from '../contexts/MaterialContext';
 export default function Home() {
@@ -11,12 +12,11 @@ export default function Home() {
 					height={885}
 					priority
 				/>
-			<MaterialProvider>
-			<Tags />
-
-			</MaterialProvider>
+				<MaterialProvider>
+					<Tags />
+					<Layer />
+				</MaterialProvider>
 			</div>
-
 		</div>
 	);
 }

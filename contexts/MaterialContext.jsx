@@ -8,17 +8,18 @@ export default function MaterialProvider({ children }) {
 	const [points, setPoints] = useState([]);
 	const [materials, setMaterials] = useState([]);
 	const [pallet, setPallet] = useState([]);
-	const [layers, setLayers] = useState([]);
+	const [layers, setLayers] = useState({});
 
 	const selectPallet = (id) => {
-		const mats = materials.filter((mat) => mat.id == id);
-		console.log(mats);
+		const mats = materials.filter((mat) => mat.id != id);
 		setPallet(mats);
 	};
 
-	const addLayer = () => {
-		
-	}
+	const addLayer = (layer) => {
+		const id = pallet[0].id;
+
+		setLayers((prev) => ({ ...prev, [id]: layer }));
+	};
 
 	useEffect(() => {
 		const ptsRef = collection(db, 'points');
@@ -35,7 +36,7 @@ export default function MaterialProvider({ children }) {
 
 	return (
 		<MaterialContext.Provider
-			value={{ points, materials, pallet, selectPallet }}
+			value={{ points, materials, pallet, layers, selectPallet, addLayer }}
 		>
 			{children}
 		</MaterialContext.Provider>
