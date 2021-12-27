@@ -11,7 +11,7 @@ export default function MaterialProvider({ children }) {
 	const [layers, setLayers] = useState({});
 
 	const selectPallet = (id) => {
-		const mats = materials.filter((mat) => mat.id != id);
+		const mats = materials.filter((mat) => mat.id === id);
 		setPallet(mats);
 	};
 

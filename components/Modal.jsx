@@ -1,7 +1,6 @@
 import { useContext, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { MaterialContext } from '../contexts/MaterialContext';
-
 import Image from 'next/image';
 
 export default function Modal({ isOpen, closeModal }) {
@@ -64,6 +63,7 @@ export default function Modal({ isOpen, closeModal }) {
 																	src={thumbnail}
 																	width={180}
 																	height={180}
+																	alt={name}
 																/>
 															</div>
 														</button>

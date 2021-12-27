@@ -10,7 +10,7 @@ export default function Layer() {
 				Object.values(layers).map((layer,id) => {
 					return (
 						<div key={id} className='absolute inset-0'>
-							<Image src={layer} width={1250} height={885} />
+							<Image src={layer} width={1250} height={885} alt={id} />
 						</div>
 					);
 				})}
