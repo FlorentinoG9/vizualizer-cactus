@@ -1,19 +1,8 @@
 import { useContext, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { MaterialContext } from '../contexts/MaterialContext';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, {
-	Scrollbar,
-	Navigation,
-	Pagination,
-	Mousewheel,
-	Keyboard,
-} from 'swiper';
-import Image from 'next/image';
 
-SwiperCore.use([Scrollbar, Navigation, Pagination, Mousewheel, Keyboard]);
-import 'swiper/css';
-import 'swiper/css/navigation';
+import Image from 'next/image';
 
 export default function Modal({ isOpen, closeModal }) {
 	const { pallet, addLayer } = useContext(MaterialContext);
@@ -58,18 +47,11 @@ export default function Modal({ isOpen, closeModal }) {
 						<div className='inline-flex w-full max-w-md flex-col justify-center items-center p-6 space-y-3 align-middle  transition-all transform rounded-2xl'>
 							{pallet.length && (
 								<>
-									<Swiper
-										direction={'vertical'}
-										slidesPerView={pallet[0].materials.length}
-										pagination={true}
-										spaceBetween={10}
-										mousewheel={true}
-										className='mySwiper max-h-[60vh] my-auto'
-									>
+									<div className=' max-h-[60vh] my-auto'>
 										{pallet[0].materials.map(
 											({ id, name, thumbnail, layer }) => {
 												return (
-													<SwiperSlide>
+													<>
 														<button
 															id={name}
 															key={id}
@@ -85,11 +67,11 @@ export default function Modal({ isOpen, closeModal }) {
 																/>
 															</div>
 														</button>
-													</SwiperSlide>
+													</>
 												);
 											},
 										)}
-									</Swiper>
+									</div>
 								</>
 							)}
 						</div>
