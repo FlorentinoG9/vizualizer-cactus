@@ -1,7 +1,19 @@
 import { useContext, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { MaterialContext } from '../contexts/MaterialContext';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+	Scrollbar,
+	Navigation,
+	Pagination,
+	Mousewheel,
+	Keyboard,
+} from 'swiper';
 import Image from 'next/image';
+
+SwiperCore.use([Scrollbar, Navigation, Pagination, Mousewheel, Keyboard]);
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 export default function Modal({ isOpen, closeModal }) {
 	const { pallet, addLayer } = useContext(MaterialContext);
@@ -43,61 +55,43 @@ export default function Modal({ isOpen, closeModal }) {
 						leaveFrom='opacity-100 scale-100'
 						leaveTo='opacity-0 scale-95'
 					>
-						<div className='inline-flex w-full max-w-sm h-[685px] flex-col justify-between items-center p-6 space-y-3 align-middle transition-all transform rounded-2xl'>
-							<a className='text-white p-3 flex justify-center'>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									className='h-6 w-6 md:h-10 md:w-10'
-									fill='none'
-									viewBox='0 0 24 24'
-									stroke='currentColor'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M5 15l7-7 7 7'
-									/>
-								</svg>
-							</a>
-							<div className='max-h-[445px] overflow-y-auto my-5'>
-								<div className='flex flex-col space-y-4 '>
-									{pallet.length &&
-										pallet[0].materials.map(
+						<div className='inline-flex w-full max-w-md flex-col justify-center items-center p-6 space-y-3 align-middle  transition-all transform rounded-2xl'>
+							{pallet.length && (
+								<>
+									<Swiper
+										direction={'vertical'}
+										slidesPerView={pallet[0].materials.length}
+										pagination={true}
+										spaceBetween={10}
+										mousewheel={true}
+										className='mySwiper max-h-[60vh] my-auto'
+									>
+										{pallet[0].materials.map(
 											({ id, name, thumbnail, layer }) => {
 												return (
-													<button
-														id={name}
-														key={id}
-														onClick={() => addLayer(layer)}
-														className='flex justify-end items-center text-transparent hover:text-gray-700 hover:bg-white/70 p-2 rounded-md'
-													>
-														<p >{name}</p>
-														<div className='w-24 h-24 ml-3 border-4 rounded-md'>
-															<Image src={thumbnail} width={180} height={180} />
-														</div>
-													</button>
+													<SwiperSlide>
+														<button
+															id={name}
+															key={id}
+															onClick={() => addLayer(layer)}
+															className=' text-transparent w-full flex justify-between items-center  hover:text-gray-700 hover:bg-white/70 p-2 rounded-md'
+														>
+															<p className='overflow-visible w-1/2'>{name}</p>
+															<div className='w-24 h-24 border-4 rounded-md'>
+																<Image
+																	src={thumbnail}
+																	width={180}
+																	height={180}
+																/>
+															</div>
+														</button>
+													</SwiperSlide>
 												);
 											},
 										)}
-								</div>
-							</div>
-							<a className='text-white p-3 flex justify-center'>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									className='h-6 w-6 md:h-10 md:w-10'
-									fill='none'
-									viewBox='0 0 24 24'
-									stroke='currentColor'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M19 9l-7 7-7-7'
-									/>
-								</svg>
-							</a>
+									</Swiper>
+								</>
+							)}
 						</div>
 					</Transition.Child>
 				</div>
