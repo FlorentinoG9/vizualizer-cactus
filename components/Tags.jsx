@@ -18,11 +18,17 @@ export default function Tags() {
 				return (
 					<button
 						onClick={() => {
-							selectPallet(id)
-							setIsOpen(!isOpen)
+							selectPallet(id);
+							setIsOpen(!isOpen);
 						}}
 						key={id}
-						className={`absolute z-20 top-[${coordY}%] left-[${coordX}%] bg-black/30 rounded-full p-1 ${isOpen ? 'hidden' : ''}`}
+						className={
+							'absolute z-20 top-[' +
+							coordY +
+							'%] left-[' +
+							coordX +
+							'%] bg-black/30 rounded-full p-1'
+						}
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
